@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <link rel="stylesheet" href="style.css">
+  <title>Tip Split Calculator</title>
+  <style>
+    table {
+      border-collapse: collapse;
+      margin-top: 20px;
+      width: 320px;
+    }
+    th, td {
+      border: 1px solid #aaa;
+      padding: 8px;
+      text-align: left;
+    }
+    th {
+      background-color: #f2f2f2;
+    }
+  </style>
+</head>
+<body>
+<div id="tipInput">
+    
+      <label>Tip Credit: $   <input type="number" id="tipCredit" step="0.01"></label><br>
+      <label>Tip Cash: $   <input type="number" id="tipCash" step="0.01"></label><br>
+      <label>Sushi Tip: $   <input type="number" id="sushiTip" step="0.01"></label><br><br>
+</div>
+
+ <div id="calculateButton">
+      <button onclick="calculateSplit()">Calculate</button>
+    
+ </div>
+ <div id="theTable">
+      <table id="resultsTable" style="display: none;">
+        <thead>
+          <tr>
+            <th>Label</th>
+            <th>Amount ($)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Credit Fee (5.2%)</td><td id="creditFee"></td></tr>
+          <tr><td>Tip Cash</td><td id="tipCashOut"></td></tr>
+          <tr><td>Adjusted Tip Credit</td><td id="adjustedCredit"></td></tr>
+          <tr><td>Subtotal</td><td id="subtotal"></td></tr>
+          <tr><td>Ten Percent (Truncated)</td><td id="tenPercent"></td></tr>
+          <tr><td>Split (After 10% & Sushi Tip)</td><td id="split"></td></tr>
+          <tr><td>Sushi Tip</td><td id="sushiTipOut"></td></tr>
+        </tbody>
+      </table>
+ </div>
+
+  <script>
+    function calculateSplit() {
+      let tipCredit = parseFloat(document.getElementById('tipCredit').value) || 0;
+      let tipCash = parseFloat(document.getElementById('tipCash').value) || 0;
+      let sushiTip = parseFloat(document.getElementById('sushiTip').value) || 0;
+
+      let tipCreditFee = tipCredit * 0.052;
+      let adjustedTipCredit = tipCredit - tipCreditFee;
+      let subTotal = adjustedTipCredit + tipCash;
+
+      // Truncate to first two digits of integer part (not rounded)
+      let rawTenPercent = subTotal * 0.1;
+      let tenPercent = parseInt(Math.floor(rawTenPercent).toString().slice(0, 2)) || 0;
+
+      let split = (subTotal - tenPercent - sushiTip) / 2;
+
+      document.getElementById('creditFee').textContent = tipCreditFee.toFixed(2);
+      document.getElementById('tipCashOut').textContent = tipCash.toFixed(2);
+      document.getElementById('adjustedCredit').textContent = adjustedTipCredit.toFixed(2);
+      document.getElementById('subtotal').textContent = subTotal.toFixed(2);
+      document.getElementById('tenPercent').textContent = tenPercent.toFixed(0);
+      document.getElementById('split').textContent = split.toFixed(2);
+      document.getElementById('sushiTipOut').textContent = sushiTip.toFixed(2);
+
+      document.getElementById('resultsTable').style.display = 'table';
+    }
+  </script>
+</body>
+</html>

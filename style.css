@@ -1,0 +1,36 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    
+    
+   
+}
+
+#theTable {
+    display: flex;
+    justify-content: center;
+}
+
+#tipInput {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+}
+
+#calculateButton {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+  }
+  
+  button {
+    width: 100px;
+    padding: 8px;
+    font-size: 16px;
+    cursor: pointer;
+  }
