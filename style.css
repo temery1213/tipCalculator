@@ -6,9 +6,8 @@
 body {
     display: flex;
     flex-direction: column;
-    background-color: black;
-    color: red;
-    
+    background:
+    linear-gradient(90deg, rgba(56, 53, 53, 0.8), rgba(90, 88, 88, 0) 70.71%);
    
 }
 
@@ -19,9 +18,10 @@ body {
 
 #tipInput {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-evenly;
     padding: 20px;
-    margin-top: 100px;
+    margin-top: 15%;
+    font-size: 1.5rem;
 }
 
 #calculateButton {
@@ -43,7 +43,7 @@ body {
     border-radius: 5px;
     letter-spacing: 1px;
     font-size: 1rem;
-    border-color:  red;
+    border-color:  black;
   }
   
   td, th {
@@ -64,7 +64,7 @@ body {
   }
   
   tr:nth-child(odd) td {
-    background-color: rgb(245,245,245);
+    background-color: rgb(214, 213, 213);
   }
   
   caption {
